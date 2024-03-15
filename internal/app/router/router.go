@@ -15,7 +15,7 @@ func MakeRoutes(app *fiber.App) {
 	v1.Get("/cars", handler.GetCars)
 	v1.Get("/cars/:id", handler.GetCar)
 	v1.Put("/cars/:id", handler.UpdateCar)
-	v1.Delete("cars/:id", handler.DeleteCar)
+	v1.Delete("/cars/:id", handler.DeleteCar)
 
 	app.Use(func(c *fiber.Ctx) error {
 		return c.SendStatus(404)
