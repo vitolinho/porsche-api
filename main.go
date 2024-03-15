@@ -12,12 +12,7 @@ func main() {
 	database.Database()
 
 	app := fiber.New()
-	app.Use(cors.New(cors.Config{
-		AllowOrigins:     "http://localhost:3000/",
-		AllowHeaders:     "Origin, Content-Type, Accept, Content-Length, Accept-Language, Cache-Control, Accept-Encoding, Connection, Access-Control-Allow-Origin, Authorization",
-		AllowMethods:     "GET, POST, PUT, DELETE",
-		AllowCredentials: true,
-	}))
+	app.Use(cors.New())
 
 	router.MakeRoutes(app)
 
