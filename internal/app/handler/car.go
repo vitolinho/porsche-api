@@ -71,16 +71,9 @@ func GetCar(c *fiber.Ctx) error {
 
 func UpdateCar(c *fiber.Ctx) error {
 	id := c.Params("id")
-	carID, err := strconv.Atoi(id)
+	_, err := strconv.Atoi(id)
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": "Id must be an integer.", "data": nil})
-	}
-
-	var count int64
-	database.DB.Model(&model.Car{}).Count(&count)
-
-	if carID <= 0 || carID > int(count) {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": fmt.Sprintf("Id must be between 1 and %d.", count), "data": nil})
 	}
 
 	input := new(model.Car)
@@ -108,17 +101,11 @@ func UpdateCar(c *fiber.Ctx) error {
 
 func DeleteCar(c *fiber.Ctx) error {
 	id := c.Params("id")
-	carID, err := strconv.Atoi(id)
+	_, err := strconv.Atoi(id)
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": "Id must be an integer.", "data": nil})
 	}
 
-	var count int64
-	database.DB.Model(&model.Car{}).Count(&count)
-
-	if carID <= 0 || carID > int(count) {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": fmt.Sprintf("Id must be between 1 and %d.", count), "data": nil})
-	}
 	var car model.Car
 	if result := database.DB.Delete(&car, id); result.Error != nil {
 		return c.SendStatus(fiber.StatusInternalServerError)
