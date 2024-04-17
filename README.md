@@ -32,7 +32,7 @@ Before you dive in, make sure to set up your environment variables by following 
 
 5. **Start Docker**: If you haven't already, make sure you have Docker installed. [Install Docker](https://docs.docker.com/get-docker/) if you haven't already.
 
-6. **Run the command**: In your terminal, simply execute `make up` to start up your local environment.
+6. **Run the command**: In your terminal, simply execute `make up` or `docker-compose up -d --build` to start up your local environment.
 
 ## Ressources
 
